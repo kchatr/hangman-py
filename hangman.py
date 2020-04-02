@@ -17,10 +17,12 @@ def play(word):
     print(" ".join(word_comp) + "\n")
     
     while not guessed and tries > 0:
+        #shows the letters that have already been guessed
         if len(guessed_letters) > 0:
-            print("\nThe letters you have guessed are: " + " ".join(guessed_letters))
+            print("\nThe letters you have guessed are: " + ", ".join(guessed_letters))
         cur_guess = input("Please guess a letter or word: ").upper() #the current guess
         
+        #if the guess is a letter
         if len(cur_guess) == 1 and cur_guess.isalpha():
             if cur_guess in guessed_letters:
                 print("You have already guessed " + cur_guess)
@@ -29,20 +31,20 @@ def play(word):
                 guessed_letters.append(cur_guess)
                 tries -= 1
             else:
-                print("Nice job!", cur_guess, "is in the word!")
+                print("Nice job! The letter", cur_guess, "is in the word!")
                 guessed_letters.append(cur_guess)
 
                 word_list = list(word_comp)
+                #finds location of letter in word
                 for i in range(0, len(word)):
                     if word[i] == cur_guess:
                         word_list[i] = cur_guess
                 
+                #updates word_comp to display updates
                 word_comp = "".join(word_list)
-                # for i in range(0, len(word)):
-                #     if word[i] == cur_guess:
-                #         word_comp
                 if "_" not in word_comp:
                     guessed = True
+        #if the guess is a word
         elif len(cur_guess) == len(word) and cur_guess.isalpha():
             if cur_guess in guessed_words:
                 print("You have already guessed " + cur_guess)
@@ -53,8 +55,10 @@ def play(word):
             else:
                 guessed = True
                 word_comp = cur_guess
+        #invalid response handler
         else:
             print("Not a valid guess!")
+        
         print(disp_hangman(tries))
         print(" ".join(word_comp) + "\n")
 
@@ -149,6 +153,7 @@ def main():
         exit()
     else:
         main()
+        print("\n")
 
 if __name__ == "__main__":
     main()
