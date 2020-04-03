@@ -1,10 +1,14 @@
 import random
 from list_of_words import w_list
-
+"""
+Chooses a word randomly from the words list (contains 450 words) and returns it with all uppercase.
+"""
 def choose_word():
     word = random.choice(w_list)
     return word.upper()
-
+"""
+This is responsible for handling all the game's logic and state manipulation, and is the functions which initalizes and executes the game instructions.
+"""
 def play(word):
     word_comp = "_" * len(word)
     guessed = False
@@ -35,7 +39,7 @@ def play(word):
                 guessed_letters.append(cur_guess)
 
                 word_list = list(word_comp)
-                #finds location of letter in word
+                #finds location(s) of letter in word
                 for i in range(0, len(word)):
                     if word[i] == cur_guess:
                         word_list[i] = cur_guess
@@ -69,7 +73,10 @@ def play(word):
         print("\nThe word was:", word)
 
 
-
+"""
+The function which displays the visual state of the game (i.e. how many tries are left).
+The ASCII art is stored in a list, with the index of each associated with the number of tries
+"""
 def disp_hangman(tries):
     stages = [  # final state: head, torso, both arms, and both legs
                 """
@@ -144,6 +151,10 @@ def disp_hangman(tries):
     ]
     return stages[tries]
 
+"""
+The function the user directly interacts with and is the abstraction of the logic.
+It is a recusrive function in order to handle repeated plays.
+"""
 def main():
     word = choose_word()
     play(word)

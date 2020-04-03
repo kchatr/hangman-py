@@ -443,5 +443,10 @@ w_list = [
     'exonerate',
     'infuriate',
     'interpolation',
-    'memorandum'
+    'memorandum',
+    'consolation',
+    'ambivalence',
+    'pinnacle',
+    'imperative',
+    'oxymoron'
     ]
